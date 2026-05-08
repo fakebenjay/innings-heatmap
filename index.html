@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Innings Heatmap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://googleapis.com" rel="stylesheet">
+  <script src="d3.v5.min.js"></script> 
+  <script src="numeral.min.js"></script> 
+  
+  <link href="index.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+  <div class="article-body">
+    <fieldset>
+        <span>
+            <input type="radio" id="total" name="drone" value="Total" checked/>
+            <label for="louie">All games</label>
+        </span>
+
+        <span>
+            <input type="radio" id="home" name="drone" value="Home"  />
+            <label for="huey">Home</label>
+        </span>
+
+        <span>
+            <input type="radio" id="away" name="drone" value="Away" />
+            <label for="dewey">Away</label>
+        </span>
+
+    </fieldset>
+    <table align="center" id="heatmap-table" role="grid">
+
+        <thead>
+            <tr id="header">
+                <th>Rank</th>
+                <th>Team</th>
+                <th class="center-of-gravity">Center of Gravity</th>
+                <th class="inning inning-1">1</th>
+                <th class="inning inning-2">2</th>
+                <th class="inning inning-3">3</th>
+                <th class="inning inning-4">4</th>
+                <th class="inning inning-5">5</th>
+                <th class="inning inning-6">6</th>
+                <th class="inning inning-7">7</th>
+                <th class="inning inning-8">8</th>
+                <th class="inning inning-9">9</th>
+                <th class="inning inning-x">x</th>
+                <th class="inning inning-10">10</th>
+                <th class="inning inning-11">11</th>
+                <th class="inning inning-12">12</th>
+                <th class="inning inning-13">13</th>
+            </tr>
+        </thead>
+        <tbody id="table-content-inner">
+
+        </tbody>
+        <!-- <tfoot id="footer" colspan="6">
+        <td colspan='6'>
+            <div class="pager"><img class="first" src="https://assets.law360news.com/1339000/1339949/step-backward-solid.png" style="height:15px; width:15px;" /> <img class="prev"
+                src="https://assets.law360news.com/1339000/1339949/backward-solid.png" style="height:15px; width:15px;" /> <img class="next" src="https://assets.law360news.com/1339000/1339949/forward-solid.png" style="height:15px; width:15px;" />
+            <img class="last" src="https://assets.law360news.com/1339000/1339949/step-forward-solid.png" style="height:15px; width:15px;" />
+            <div><select class="pagesize" title="Select page size">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                </select> <select class="gotoPage" title="Select page number"></select></div>
+            </div>
+        </td>
+        </tfoot> -->
+    </table>
+
+
+  </div>
+  <script src="index.js" defer></script>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+body {margin:0;padding:0;}
+
+.article-body {
+    width:100%;
+    font-family: 'Overpass', sans-serif;
+}
+
+fieldset {width:auto;margin:0 auto;text-align: center;position:sticky;top: 0;height:15px;z-index: 10;background-color:white;}
+
+.logo-holder {
+    flex:1;
+    aspect-ratio:1 / 1;
+    min-width:0;
+    max-width:50px;
+    align-content: center;
+    padding:0 0 0 5px;
+}
+
+.logo-holder img {vertical-align: middle;}
+
+.rank {text-align:right;border-bottom:unset !important;padding-right:10px;}
+
+.team-name {
+    flex:1;
+    aspect-ratio:3 / 1;
+    min-width:0;
+    font-size:14pt;
+    padding: 0;
+    text-align: center;
+    align-content: center;
+}
+
+.name-inner {
+    width: 97%;
+    padding: 0 3px;
+    display: block;
+}
+
+.inning, .center-of-gravity {text-align:center;padding: 0;}
+
+td.inning {min-width:28px;font-size:9pt;}
+
+#heatmap-table {border-spacing:0}
+
+#heatmap-table td, #heatmap-table th {
+  border-bottom: 2px solid black;
+  position:relative;
+}
+
+#heatmap-table th {padding:3px;position:sticky;top: 34.6px;z-index: 10;background-color:white;}
+
+#heatmap-table td:nth-child(13), #heatmap-table th:nth-child(13),#heatmap-table td:nth-child(3), #heatmap-table th:nth-child(3) {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+
+#heatmap-table th:nth-child(2) {
+  border-left: 2px solid black;
+}
+
+
+.triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    width:10px;
+    height:15px;
+    z-index:5;
+}
+

@@ -48,7 +48,7 @@ def tally_runs(pbp, status):
 
 df = pd.read_excel("innings_blank.xlsx", index_col=0)
 
-games_2026 = statsapi.schedule(start_date="4/13/2026", end_date="12/31/2026")
+games_2026 = statsapi.schedule(start_date="01/01/2026", end_date="12/31/2026")
 done_regular_games_2026 = list(
     filter(lambda x: x["game_type"] == "R" and x["status"] == "Final", games_2026)
 )
@@ -178,6 +178,11 @@ for inning in list(range(1, 33)):
     df[str(inning) + "avg"] = df[inning] / df[str(inning) + "p"]
 
 df["xavg"] = df["x"] / df["xp"]
+
+# df["html"] = df.apply(
+#     lambda x: f"<div style='display:flex;'><span style='flex:1;aspect-ratio:1 / 1; min-width:0;'><img alt='{x['team_name']} cap logo' style='width:100%;' src='https://github.com/fakebenjay/innings-heatmap/blob/master/logos/{x['code']}.png'/></span><span style='background-color:{str(x['hex_bg'])};color:{str(x['hex_text'])};{"-webkit-text-stroke:0.5px " if bool(x['hex_ol']) else ''}{str(x['hex_ol'] + ";") if bool(x['hex_ol']) else ''}flex:1;aspect-ratio:1 / 3; min-width:0;font-size:10px;'>{x['team_name']}<br/><small>{str(x['runs'])} runs in {str(x['1p'])} games</small></span></div>",
+#     axis=1,
+# )
 
 df.to_csv("output.csv")
 df.to_excel("output.xlsx")
