@@ -58,7 +58,7 @@ function populate() {
           return `
           <td class='rank'>${data.indexOf(x) + 1}.</td>
           <td class='team-name'>
-      <div style='display:flex;'><span class='logo-holder' style='background-color:#${x['hex_bg']};'><img alt='${x['team_name']} cap logo' style='width:100%;' src='logos/${x['code']}.png'/></span><span class='team-name' style='background-color:#${x['hex_bg']};color:#${x['hex_text']};${!!x['hex_ol'] ? '-webkit-text-stroke:.4px #' + x['hex_ol'] + ';' : ''}'><span class='name-inner'>${x['team_name']}<br/><small>${x['runs']} runs in ${x['1p']} games</small></span></div>
+      <div style='display:flex;'><span class='logo-holder' style='background-color:#${x['hex_bg']};'><img alt='${x['team_name']} cap logo' style='width:100%;' src='logos/${x['code']}.png'/></span><span class='team-name' style='background-color:#${x['hex_bg']};color:#${x['hex_text']};${!!x['hex_ol'] ? '-webkit-text-stroke:.4px #' + x['hex_ol'] + ';' : ''}'><span class='name-inner'>${x['team_name']}<br/><small>${numeral(x['runs']).format('0,0')} runs in ${numeral(x['1p']).format('0,0')} games</small></span></div>
       </td>
       <td class='center-of-gravity ${x['code']}'>${numeral(x['center_of_gravity']).format('0[.]00')}</td>
       <td class="inning inning-1 ${x['code']}">${!!x['1'] ? numeral(x['1']).format('0,0') : ''}</td>
