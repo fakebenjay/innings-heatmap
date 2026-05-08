@@ -61,20 +61,20 @@ function populate() {
       <div style='display:flex;'><span class='logo-holder' style='background-color:#${x['hex_bg']};'><img alt='${x['team_name']} cap logo' style='width:100%;' src='logos/${x['code']}.png'/></span><span class='team-name' style='background-color:#${x['hex_bg']};color:#${x['hex_text']};${!!x['hex_ol'] ? '-webkit-text-stroke:.4px #' + x['hex_ol'] + ';' : ''}'><span class='name-inner'>${x['team_name']}<br/><small>${x['runs']} runs in ${x['1p']} games</small></span></div>
       </td>
       <td class='center-of-gravity ${x['code']}'>${numeral(x['center_of_gravity']).format('0[.]00')}</td>
-      <td class="inning inning-1 ${x['code']}">${x['1']}</td>
-      <td class="inning inning-2 ${x['code']}">${x['2']}</td>
-      <td class="inning inning-3 ${x['code']}">${x['3']}</td>
-      <td class="inning inning-4 ${x['code']}">${x['4']}</td>
-      <td class="inning inning-5 ${x['code']}">${x['5']}</td>
-      <td class="inning inning-6 ${x['code']}">${x['6']}</td>
-      <td class="inning inning-7 ${x['code']}">${x['7']}</td>
-      <td class="inning inning-8 ${x['code']}">${x['8']}</td>
-      <td class="inning inning-9 ${x['code']}">${x['9']}</td>
-      <td class="inning inning-x ${x['code']}">${x['x']}</td>
-      <td class="inning inning-10 ${x['code']}">${x['10']}</td>
-      <td class="inning inning-11 ${x['code']}">${x['11']}</td>
-      <td class="inning inning-12 ${x['code']}">${x['12']}</td>
-      <td class="inning inning-13 ${x['code']}">${x['13']}</td>`;
+      <td class="inning inning-1 ${x['code']}">${!!x['1'] ? numeral(x['1']).format('0,0') : ''}</td>
+      <td class="inning inning-2 ${x['code']}">${!!x['2'] ? numeral(x['2']).format('0,0') : ''}</td>
+      <td class="inning inning-3 ${x['code']}">${!!x['3'] ? numeral(x['3']).format('0,0') : ''}</td>
+      <td class="inning inning-4 ${x['code']}">${!!x['4'] ? numeral(x['4']).format('0,0') : ''}</td>
+      <td class="inning inning-5 ${x['code']}">${!!x['5'] ? numeral(x['5']).format('0,0') : ''}</td>
+      <td class="inning inning-6 ${x['code']}">${!!x['6'] ? numeral(x['6']).format('0,0') : ''}</td>
+      <td class="inning inning-7 ${x['code']}">${!!x['7'] ? numeral(x['7']).format('0,0') : ''}</td>
+      <td class="inning inning-8 ${x['code']}">${!!x['8'] ? numeral(x['8']).format('0,0') : ''}</td>
+      <td class="inning inning-9 ${x['code']}">${!!x['9'] ? numeral(x['9']).format('0,0') : ''}</td>
+      <td class="inning inning-x ${x['code']}">${!!x['x'] ? numeral(x['x']).format('0,0') : ''}</td>
+      <td class="inning inning-10 ${x['code']}">${!!x['10'] ? numeral(x['10']).format('0,0') : ''}</td>
+      <td class="inning inning-11 ${x['code']}">${!!x['11'] ? numeral(x['11']).format('0,0') : ''}</td>
+      <td class="inning inning-12 ${x['code']}">${!!x['12'] ? numeral(x['12']).format('0,0') : ''}</td>
+      <td class="inning inning-13 ${x['code']}">${!!x['13'] ? numeral(x['13']).format('0,0') : ''}</td>`;
         });
       return data;
     })

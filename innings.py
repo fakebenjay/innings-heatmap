@@ -134,35 +134,132 @@ for g in done_regular_games_2026:
     home_total_iloc = df.loc[(df.index == home_id) & (df["status"] == "Total")].iloc[0]
 
     for index, runs in enumerate(away_innings):
-        away_iloc.loc[index + 1] += runs
-        away_iloc.loc["runs_adj"] += runs * (index + 1)
-        away_iloc.loc[str(index + 1) + "p"] += 1
-        away_total_iloc.loc[index + 1] += runs
-        away_total_iloc.loc["runs_adj"] += runs * (index + 1)
-        away_total_iloc.loc[str(index + 1) + "p"] += 1
+        away_iloc.loc[index + 1] = (
+            away_iloc.loc[index + 1] + runs
+            if pd.notna(away_iloc.loc[index + 1])
+            else runs
+        )
+        away_iloc.loc["runs_adj"] = (
+            away_iloc.loc["runs_adj"] + (runs * (index + 1))
+            if pd.notna(away_iloc.loc["runs_adj"])
+            else runs * (index + 1)
+        )
+        away_iloc.loc[str(index + 1) + "p"] = (
+            away_iloc.loc[str(index + 1) + "p"] + 1
+            if pd.notna(away_iloc.loc[str(index + 1) + "p"])
+            else 1
+        )
+        away_total_iloc.loc[index + 1] = (
+            away_total_iloc.loc[index + 1] + runs
+            if pd.notna(away_total_iloc.loc[index + 1])
+            else runs
+        )
+        away_total_iloc.loc["runs_adj"] = (
+            away_total_iloc.loc["runs_adj"] + (runs * (index + 1))
+            if pd.notna(away_total_iloc.loc["runs_adj"])
+            else runs * (index + 1)
+        )
+        away_total_iloc.loc[str(index + 1) + "p"] = (
+            away_total_iloc.loc[str(index + 1) + "p"] + 1
+            if pd.notna(away_total_iloc.loc[str(index + 1) + "p"])
+            else 1
+        )
 
     for index, runs in enumerate(home_innings):
-        home_iloc.loc[index + 1] += runs
-        home_iloc.loc["runs_adj"] += runs * (index + 1)
-        home_iloc.loc[str(index + 1) + "p"] += 1
-        home_total_iloc.loc[index + 1] += runs
-        home_total_iloc.loc["runs_adj"] += runs * (index + 1)
-        home_total_iloc.loc[str(index + 1) + "p"] += 1
+        home_iloc.loc[index + 1] = (
+            home_iloc.loc[index + 1] + runs
+            if pd.notna(home_iloc.loc[index + 1])
+            else runs
+        )
+        home_iloc.loc["runs_adj"] = (
+            home_iloc.loc["runs_adj"] + (runs * (index + 1))
+            if pd.notna(home_iloc.loc["runs_adj"])
+            else runs * (index + 1)
+        )
+        home_iloc.loc[str(index + 1) + "p"] = (
+            home_iloc.loc[str(index + 1) + "p"] + 1
+            if pd.notna(home_iloc.loc[str(index + 1) + "p"])
+            else 1
+        )
+        home_total_iloc.loc[index + 1] = (
+            home_total_iloc.loc[index + 1] + runs
+            if pd.notna(home_total_iloc.loc[index + 1])
+            else runs
+        )
+        home_total_iloc.loc["runs_adj"] = (
+            home_total_iloc.loc["runs_adj"] + (runs * (index + 1))
+            if pd.notna(home_total_iloc.loc["runs_adj"])
+            else runs * (index + 1)
+        )
+        home_total_iloc.loc[str(index + 1) + "p"] = (
+            home_total_iloc.loc[str(index + 1) + "p"] + 1
+            if pd.notna(home_total_iloc.loc[str(index + 1) + "p"])
+            else 1
+        )
 
-    away_iloc.loc["runs"] += away_score
-    away_total_iloc.loc["runs"] += away_score
-    home_iloc.loc["runs"] += home_score
-    home_total_iloc.loc["runs"] += home_score
+    away_iloc.loc["runs"] = (
+        away_iloc.loc["runs"] + away_score
+        if pd.notna(away_iloc.loc["runs"])
+        else away_score
+    )
+    away_total_iloc.loc["runs"] = (
+        away_total_iloc.loc["runs"] + away_score
+        if pd.notna(away_total_iloc.loc["runs"])
+        else away_score
+    )
 
-    away_iloc.loc["x"] += away_extras_runs
-    away_total_iloc.loc["x"] += away_extras_runs
-    home_iloc.loc["x"] += home_extras_runs
-    home_total_iloc.loc["x"] += home_extras_runs
+    home_iloc.loc["runs"] = (
+        home_iloc.loc["runs"] + home_score
+        if pd.notna(home_iloc.loc["runs"])
+        else home_score
+    )
+    home_total_iloc.loc["runs"] = (
+        home_total_iloc.loc["runs"] + home_score
+        if pd.notna(home_total_iloc.loc["runs"])
+        else home_score
+    )
 
-    away_iloc.loc["xp"] += away_extras_played
-    away_total_iloc.loc["xp"] += away_extras_played
-    home_iloc.loc["xp"] += home_extras_played
-    home_total_iloc.loc["xp"] += home_extras_played
+    away_iloc.loc["x"] = (
+        away_iloc.loc["x"] + away_extras_runs
+        if pd.notna(away_iloc.loc["x"])
+        else away_extras_runs
+    )
+    away_total_iloc.loc["x"] = (
+        away_total_iloc.loc["x"] + away_extras_runs
+        if pd.notna(away_total_iloc.loc["x"])
+        else away_extras_runs
+    )
+    home_iloc.loc["x"] = (
+        home_iloc.loc["x"] + home_extras_runs
+        if pd.notna(home_iloc.loc["x"])
+        else home_extras_runs
+    )
+    home_total_iloc.loc["x"] = (
+        home_total_iloc.loc["x"] + home_extras_runs
+        if pd.notna(home_total_iloc.loc["x"])
+        else home_extras_runs
+    )
+
+    away_iloc.loc["xp"] = (
+        away_iloc.loc["xp"] + away_extras_played
+        if pd.notna(away_iloc.loc["xp"])
+        else away_extras_played
+    )
+    away_total_iloc.loc["xp"] = (
+        away_total_iloc.loc["xp"] + away_extras_played
+        if pd.notna(away_total_iloc.loc["xp"])
+        else away_extras_played
+    )
+    home_iloc.loc["xp"] = (
+        home_iloc.loc["xp"] + home_extras_played
+        if pd.notna(home_iloc.loc["xp"])
+        else home_extras_played
+    )
+    home_total_iloc.loc["xp"] = (
+        home_total_iloc.loc["xp"] + home_extras_played
+        if pd.notna(home_total_iloc.loc["xp"])
+        else home_extras_played
+    )
 
     df.loc[(df.index == away_id) & (df["status"] == "Away")] = list(away_iloc)
     df.loc[(df.index == home_id) & (df["status"] == "Home")] = list(home_iloc)
@@ -180,7 +277,7 @@ for inning in list(range(1, 33)):
 df["xavg"] = df["x"] / df["xp"]
 
 # df["html"] = df.apply(
-#     lambda x: f"<div style='display:flex;'><span style='flex:1;aspect-ratio:1 / 1; min-width:0;'><img alt='{x['team_name']} cap logo' style='width:100%;' src='https://github.com/fakebenjay/innings-heatmap/blob/master/logos/{x['code']}.png'/></span><span style='background-color:{str(x['hex_bg'])};color:{str(x['hex_text'])};{"-webkit-text-stroke:0.5px " if bool(x['hex_ol']) else ''}{str(x['hex_ol'] + ";") if bool(x['hex_ol']) else ''}flex:1;aspect-ratio:1 / 3; min-width:0;font-size:10px;'>{x['team_name']}<br/><small>{str(x['runs'])} runs in {str(x['1p'])} games</small></span></div>",
+#     lambda x: f"<div style='display:flex;'><span style='flex:1;aspect-ratio:1 / 1; min-width:0;'><img alt='{x['team_name']} cap logo' style='width:100%;' src='https://github.com/fakebenjay/innings-heatmap/blob/master/logos/{x['code']}.png'/></span><span style='background-color:{str(x['hex_bg'])};color:{str(x['hex_text'])};{"-webkit-text-stroke:0.5px " if pd.notna(x['hex_ol']) else ''}{str(x['hex_ol'] + ";") if pd.notna(x['hex_ol']) else ''}flex:1;aspect-ratio:1 / 3; min-width:0;font-size:10px;'>{x['team_name']}<br/><small>{str(x['runs'])} runs in {str(x['1p'])} games</small></span></div>",
 #     axis=1,
 # )
 
