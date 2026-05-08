@@ -1,8 +1,63 @@
 body {margin:0;padding:0;}
 
+@font-face {
+    font-family: "overpass-regular";
+    src: url("overpass/overpass-regular.otf");
+}
+
+@font-face {
+    font-family: "overpass-italic";
+    src: url("overpass/overpass-italic.otf");
+}
+
+@font-face {
+    font-family: "overpass-bold";
+    src: url("overpass/overpass-bold.otf");
+}
+
+@font-face {
+    font-family: "overpass-extrabold-italic";
+    src: url("overpass/overpass-extrabold-italic.otf");
+}
+
+@font-face {
+    font-family: "overpass-extrabold";
+    src: url("overpass/overpass-extrabold.otf");
+}
+
+@font-face {
+    font-family: "overpass-extralight";
+    src: url("overpass/overpass-extralight.otf");
+}
+
+
+.overpass-bold {
+    font-family: overpass-bold, sans-serif;
+}
+
+.overpass-regular {
+    font-family: overpass-regular, sans-serif;
+}
+
+.overpass-italic {
+    font-family: overpass-italic, sans-serif;
+}
+
+.overpass-extrabold-italic {
+    font-family: overpass-extrabold-italic, sans-serif;
+}
+
+.overpass-extrabold {
+    font-family: overpass-extrabold, sans-serif;
+}
+
+.overpass-extralight {
+    font-family: overpass-extralight, sans-serif;
+}
+
 .article-body {
     width:100%;
-    font-family: 'Overpass', sans-serif;
+    font-family: overpass-regular, sans-serif;
 }
 
 fieldset {width:auto;margin:0 auto;text-align: center;position:sticky;top: 0;height:15px;z-index: 10;background-color:white;}

@@ -1,13 +1,17 @@
 document.querySelector('fieldset #total').checked = true;
 
+var totalScale;
+var homeAwayScale;
 var heatmapScale;
 var cogScale = d3
   .scaleLinear()
   .domain([3.75, 5, 6.25])
   .range(['white', '#003DA5', 'black']);
 const allInnings = Array.from({ length: 33 }, (_, i) => i + 1);
-var scaleMax;
+var homeAwayScaleMax;
+var totalScaleMax;
 var selVal;
+var data;
 
 function populate() {
   d3.select('#heatmap-table tbody').html('');
@@ -15,36 +19,57 @@ function populate() {
     .then(function (csv) {
       selVal = document.querySelector('input[name="drone"]:checked').value;
 
+      if (!totalScale) {
+        var totalData = csv
+          .filter(d => d.status == 'Total')
+          .sort(function (a, b) {
+            return a['center_of_gravity'] < b['center_of_gravity'] ? 1 : -1;
+          });
+        var allScoresTotal = [];
+
+        for (let i = 0; i < totalData.length; i++) {
+          allInnings.forEach(function (inning) {
+            allScoresTotal.push(totalData[i][inning]);
+          });
+        }
+
+        totalScaleMax = Math.max(...allScoresTotal);
+
+        totalScale = d3
+          .scaleLinear()
+          .domain([0, totalScaleMax / 2, totalScaleMax])
+          .range(['white', '#C50C26', 'black']);
+      }
+
+      if (!homeAwayScale) {
+        var homeAwayData = csv
+          .filter(d => d.status == 'Away' || d.status == 'Home')
+          .sort(function (a, b) {
+            return a['center_of_gravity'] < b['center_of_gravity'] ? 1 : -1;
+          });
+        var allScoresHomeAway = [];
+
+        for (let i = 0; i < homeAwayData.length; i++) {
+          allInnings.forEach(function (inning) {
+            allScoresHomeAway.push(homeAwayData[i][inning]);
+          });
+        }
+
+        homeAwayScaleMax = Math.max(...allScoresHomeAway);
+
+        homeAwayScale = d3
+          .scaleLinear()
+          .domain([0, homeAwayScaleMax / 2, homeAwayScaleMax])
+          .range(['white', '#C50C26', 'black']);
+      }
+
       var data = csv
         .filter(d => d.status == selVal)
         .sort(function (a, b) {
           return a['center_of_gravity'] < b['center_of_gravity'] ? 1 : -1;
         });
 
-      if (selVal != 'Total') {
-        var scaleData = csv
-          .filter(d => d.status == 'Away' || d.status == 'Home')
-          .sort(function (a, b) {
-            return a['center_of_gravity'] < b['center_of_gravity'] ? 1 : -1;
-          });
-      } else {
-        var scaleData = data;
-      }
-
-      var allScores = [];
-
-      for (let i = 0; i < scaleData.length; i++) {
-        allInnings.forEach(function (inning) {
-          allScores.push(scaleData[i][inning]);
-        });
-      }
-
-      scaleMax = Math.max(...allScores);
-
-      heatmapScale = d3
-        .scaleLinear()
-        .domain([0, scaleMax / 2, scaleMax])
-        .range(['white', '#C50C26', 'black']);
+      heatmapScale = selVal === 'Total' ? totalScale : homeAwayScale;
 
       var tbody = d3.select('#heatmap-table tbody');
 
@@ -81,10 +106,10 @@ function populate() {
     .then(function (data) {
       d3.selectAll('td.inning')
         .style('background-color', function (inn) {
-          return heatmapScale(this.innerText);
+          return totalScale(this.innerText);
         })
         .style('color', function (inn) {
-          return this.innerText > heatmapScale.domain()[1] ? 'white' : 'black';
+          return this.innerText > totalScale.domain()[1] ? 'white' : 'black';
         });
 
       d3.selectAll('td.center-of-gravity')
