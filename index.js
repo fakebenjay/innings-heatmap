@@ -5,7 +5,7 @@ var homeAwayScale;
 var heatmapScale;
 var cogScale = d3
   .scaleLinear()
-  .domain([2, 4.125, 6.25])
+  .domain([3.9, 4.5, 6.1])
   .range(['white', '#003DA5', 'black']);
 //   .range(['white', '#C50C26', 'black']);
 

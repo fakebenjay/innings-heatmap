@@ -81,8 +81,8 @@ for g in done_regular_games_2026:
         )
     )
 
-    away_innings = away[:-3] if g["inning_state"] == "Bottom" else home[:-4]
-    home_innings = home[:-3]
+    away_innings = away[:-3]
+    home_innings = home[:-3] if g["inning_state"] == "Bottom" else home[:-4]
 
     if verify(away_innings) or verify(home_innings):
         play_by_play = statsapi.game_scoring_play_data(g["game_id"])
@@ -90,8 +90,8 @@ for g in done_regular_games_2026:
         pbp_filter_1 = list(
             map(
                 lambda x: {
-                    "away_score": x["result"]["awayScore"],
-                    "home_score": x["result"]["homeScore"],
+                    "away_score": x["result"]["homeScore"],
+                    "home_score": x["result"]["awayScore"],
                     "half": x["about"]["halfInning"],
                     "inning": x["about"]["inning"],
                 },
@@ -108,10 +108,10 @@ for g in done_regular_games_2026:
         )
         home_innings = tally_runs(pbp, "top")[: g["current_inning"]]
 
-    away_extras = away_innings[9:]
-    home_extras = home_innings[9:]
-    away_extras_runs = sum(away_extras) if len(away_extras) > 0 else float("nan")
-    home_extras_runs = sum(home_extras) if len(home_extras) > 0 else float("nan")
+    away_extras = home_innings[9:]
+    home_extras = away_innings[9:]
+    away_extras_runs = sum(home_extras) if len(home_extras) > 0 else float("nan")
+    home_extras_runs = sum(away_extras) if len(away_extras) > 0 else float("nan")
 
     if g["current_inning"] > 9:
         away_extras_played = g["current_inning"] - 9
